@@ -18,6 +18,7 @@ export default {
         } });
       }
     },
+    
     * product(_, {call, put, select}) {
       const { page, products_list } = yield select(state => state.home);
       const { status, data } = yield call(homeApi.product, {

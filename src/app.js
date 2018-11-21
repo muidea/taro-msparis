@@ -19,38 +19,32 @@ class App extends Component {
   config = {
     pages: [
       'pages/home/index',
-      'pages/cart/index',
       'pages/user/index',
-      'pages/detail/index',
-      'pages/about/index',
-      'pages/size/index',
-      'pages/login/index',
-      'pages/message/index',
-      'pages/couponList/index',
       'pages/order/index',
+      'pages/login/index',
       'pages/addressList/index',
       'pages/addressUpdate/index'
     ],
     window: {
       backgroundTextStyle: 'dark',
       navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: '时装衣橱',
+      navigationBarTitleText: 'magicDRP',
       navigationBarTextStyle: 'black'
     },
     tabBar: {
       list: [{
         pagePath: "pages/home/index",
-        text: "首页",
+        text: "产品列表",
         iconPath: "./images/tab/home.png",
         selectedIconPath: "./images/tab/home-active.png"
       }, {
-        pagePath: "pages/cart/index",
-        text: "衣袋",
+        pagePath: "pages/order/index",
+        text: "当月订单",
         iconPath: "./images/tab/cart.png",
         selectedIconPath: "./images/tab/cart-active.png"
       },{
         pagePath: "pages/user/index",
-        text: "我的",
+        text: "个人中心",
         iconPath: "./images/tab/user.png",
         selectedIconPath: "./images/tab/user-active.png"
       }],
