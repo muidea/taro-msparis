@@ -87,75 +87,75 @@ export default class User extends Component {
   render() {
     const { mobile, coupon_number, nickname, list } = this.props;
     return (
-      <View className="user-page">
-        <View className="not-login">
-          <View className="to-login" data-url="/pages/login/index" onClick={this.goPage}>
-            <View className="left">
+      <View className='user-page'>
+        <View className='not-login'>
+          <View className='to-login' data-url='/pages/login/index' onClick={this.goPage}>
+            <View className='left'>
               <View className={mobile ? 'name black' : 'name '}>{ nickname || '请登录 >'}</View>
               <View>
-                <View className="msg" data-url="/pages/message/index" onClick={this.goToPage}>
-                  <Image mode="widthFix" src={message_img} />
+                <View className='msg' data-url='/pages/message/index' onClick={this.goToPage}>
+                  <Image mode='widthFix' src={message_img} />
                 </View>
-                <View className="msg" onClick={this.outLogin}>
-                  <Image mode="widthFix" src="http://static-r.msparis.com/uploads/9/a/9a00ce9a5953a6813a03ee3324cbad2a.png" />
+                <View className='msg' onClick={this.outLogin}>
+                  <Image mode='widthFix' src='http://static-r.msparis.com/uploads/9/a/9a00ce9a5953a6813a03ee3324cbad2a.png' />
                 </View>
               </View>
             </View>
-            <View className="avatar-container">
-              <Image className="avatar" src={avatar_img} />
+            <View className='avatar-container'>
+              <Image className='avatar' src={avatar_img} />
             </View>
           </View>
-          <View className="list">
+          <View className='list'>
             {list && list.map((item, index) => (
-              <View className="item" key={index} data-url={`/pages/order/index?type=${index}`} onClick={this.goToPage}>
-                <Image mode="widthFix" src={item.img} />
+              <View className='item' key={index} data-url={`/pages/order/index?type=${index}`} onClick={this.goToPage}>
+                <Image mode='widthFix' src={item.img} />
                 <Text>{item.txt}</Text>
-                {item.num > 0 && <Icon className="num">{item.num}</Icon>}
+                {item.num > 0 && <Icon className='num'>{item.num}</Icon>}
               </View>
             ))}
           </View>
         </View>
-        <View className="login">
-          <View className="card">
-            <View className="type type0">
-              <View className="operation">
-                <View className="txt">{mobile ? 'VIP会员用户' : '您还不是会员'}</View>
+        <View className='login'>
+          <View className='card'>
+            <View className='type type0'>
+              <View className='operation'>
+                <View className='txt'>{mobile ? 'VIP会员用户' : '您还不是会员'}</View>
                 {!mobile && (
-                  <View className="btn" data-url="/pages/login/index" onClick={this.goPage}>
+                  <View className='btn' data-url='/pages/login/index' onClick={this.goPage}>
                     成为会员
-                    <View className="iconfont icon-membership_more"></View>
+                    <View className='iconfont icon-membership_more'></View>
                   </View>
                 )}
               </View>
             </View>
           </View>
-          <View className="item" data-url="/pages/addressList/index" onClick={this.goToPage}>
-            <View className="left">
-              <Image className="icon-left" src={address_img} />
+          <View className='item' data-url='/pages/addressList/index' onClick={this.goToPage}>
+            <View className='left'>
+              <Image className='icon-left' src={address_img} />
               <Text>收货地址</Text>
             </View>
-            <View className="right">
-              {coupon_number && <View className="num">{coupon_number}</View>}
-              <View className="iconfont icon-more arrow"></View>
+            <View className='right'>
+              {coupon_number && <View className='num'>{coupon_number}</View>}
+              <View className='iconfont icon-more arrow'></View>
             </View>
           </View>
-          <View className="item" data-url="/pages/couponList/index" onClick={this.goToPage}>
-            <View className="left">
-              <Image className="icon-left" src={coupon_img} />
+          <View className='item' data-url='/pages/couponList/index' onClick={this.goToPage}>
+            <View className='left'>
+              <Image className='icon-left' src={coupon_img} />
               <Text>优惠券</Text>
             </View>
-            <View className="right">
-              {coupon_number && <View className="num">{coupon_number}</View>}
-              <View className="iconfont icon-more arrow"></View>
+            <View className='right'>
+              {coupon_number && <View className='num'>{coupon_number}</View>}
+              <View className='iconfont icon-more arrow'></View>
             </View>
           </View>
-          <View className="item" data-url="/pages/about/index" onClick={this.goPage}>
-            <View className="left">
-              <Image className="icon-left" src={about_img} />
+          <View className='item' data-url='/pages/about/index' onClick={this.goPage}>
+            <View className='left'>
+              <Image className='icon-left' src={about_img} />
               <Text>关于</Text>
             </View>
-            <View className="right">
-              <View className="iconfont icon-more arrow"></View>
+            <View className='right'>
+              <View className='iconfont icon-more arrow'></View>
             </View>
           </View>
         </View>

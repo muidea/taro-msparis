@@ -23,10 +23,11 @@ export default class MySwiper extends Component {
         indicatorDots
         indicatorColor='#999'
         indicatorActiveColor='#bf708f'
-        autoplay>
+        autoplay
+      >
         { banner.map((item, index) => (
           <SwiperItem key={index}>
-            <Image mode="widthFix" src={`${item.image_src}!w750`}></Image>
+            <Image mode='widthFix' src={`${item.image_src}!w750`}></Image>
           </SwiperItem>
         ))}
       </Swiper>

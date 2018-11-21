@@ -72,7 +72,7 @@ export default {
         },1000);
       }
     },
-    * removeAddress(_, { put, call, select }) {
+    * removeAddress(_, { call, select }) {
       const { access_token } = yield select(state => state.common);
       const addressId = yield select(state => state.addressUpdate.addressId);
       const { status } = yield call(addressUpdateApi.removeAddress, {

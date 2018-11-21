@@ -60,16 +60,16 @@ export default class Index extends Component {
   render() {
     const { banner, brands, products_list, effects } = this.props;
     return (
-      <View className="home-page">
+      <View className='home-page'>
         <MySwiper banner={banner} home />
-        <View className="nav-list">
+        <View className='nav-list'>
           { brands.map((item, index) => (
-            <View className="nav-item" key={index}>
-              <Image mode="widthFix" src={item.image_src}></Image>
+            <View className='nav-item' key={index}>
+              <Image mode='widthFix' src={item.image_src}></Image>
             </View>
           ))}
         </View>
-        <Text className="recommend">为你推荐</Text>
+        <Text className='recommend'>为你推荐</Text>
         <GoodsList list={products_list} loading={effects['home/product']} />
       </View>
     )

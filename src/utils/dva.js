@@ -1,6 +1,5 @@
 import Taro from '@tarojs/taro';
 import { create } from 'dva-core';
-import { createLogger } from 'redux-logger';
 import createLoading from 'dva-loading';
 
 let app;

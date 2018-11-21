@@ -49,15 +49,15 @@ export default class Order extends Component {
   render() {
     const { orderType, activeTypeIndex } = this.state;
     return (
-      <View className="order-page">
-        <View className="toggleType">
+      <View className='order-page'>
+        <View className='toggleType'>
         { orderType.map((item, index)=>(
           <View key={index} className={activeTypeIndex == index?'active item':'item'} data-type={item.type} onClick={this.toggleActiveType}>
             { item.name }
           </View>
         )) }
         </View>
-        <View className="empty"></View>
+        <View className='empty'></View>
       </View>
     )
   }
