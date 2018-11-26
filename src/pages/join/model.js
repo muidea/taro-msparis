@@ -1,8 +1,8 @@
 import Taro from '@tarojs/taro';
-import * as login from './service';
+import * as join from './service';
 
 export default {
-  namespace: 'login',
+  namespace: 'join',
   state: {
     mobile: '',
     code: '',
@@ -20,9 +20,9 @@ export default {
   },
 
   effects: {
-    * login(_, { call, put, select }) {
-      const { code, mobile } = yield select(state => state.login);
-      const res = yield call(login.login, { code, mobile});
+    * join(_, { call, put, select }) {
+      const { code, mobile } = yield select(state => state.join);
+      const res = yield call(join.join, { code, mobile});
       if (res.status == 'ok') {
         const userInfo = {
           access_token: res.data.access_token,
@@ -75,8 +75,8 @@ export default {
     },
 
     * sendSms(_, { call, put, select }) {
-      const { mobile } = yield select(state => state.login);
-      const res = yield call(login.getSms, { mobile });
+      const { mobile } = yield select(state => state.join);
+      const res = yield call(join.getSms, { mobile });
       if (res.status == 'ok') {
         yield put({ type: 'save', payload: { sending: 1, erroMessage: '' } });
       } else {
@@ -85,8 +85,8 @@ export default {
     },
 
     * sendSmsVoice(_, { call, put, select }) {
-      const { mobile } = yield select(state => state.login);
-      const res = yield call(login.getSmsVoice, { mobile });
+      const { mobile } = yield select(state => state.join);
+      const res = yield call(join.getSmsVoice, { mobile });
       if (res.status == 'ok') {
         yield put({ type: 'save', payload: { sending: 1, erroMessage: '' } });
       } else {

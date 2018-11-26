@@ -1,8 +1,8 @@
 import Request from '../../utils/request';
 
 // 老用户登录
-export const login = data => Request({
-  url: '/user/login',
+export const join = data => Request({
+  url: '/user/join',
   method: 'POST',
   data,
 });

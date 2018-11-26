@@ -1,14 +1,14 @@
 import Taro, { Component } from '@tarojs/taro';
-import { View, Text, Input, Button } from '@tarojs/components';
+import { View, Input, Picker, Button } from '@tarojs/components';
 import { connect } from '@tarojs/redux';
 import './index.scss';
 
 let setIntervalTime = null;
 
-@connect(({login}) => ({
-  ...login,
+@connect(({join}) => ({
+  ...join,
 }))
-export default class Login extends Component {
+export default class Join extends Component {
   config = {
     navigationBarTitleText: '登录',
   };
@@ -17,13 +17,15 @@ export default class Login extends Component {
     super(props);
     this.state = {
       sending: 0,
+      selector: [['美国','新泽西','测试'], ['中国','浙江','杭州'], ['中国','浙江','宁波'], ['巴西'], ['日本']],
+      selectorChecked: '美国',
     };
   }
 
   getMobile = (event) => {
     const value = event.target.value;
     this.props.dispatch({
-      type: 'login/save',
+      type: 'join/save',
       payload: { mobile: value },
     });
   }
@@ -31,19 +33,19 @@ export default class Login extends Component {
   getCode = (event) => {
     const value = event.target.value;
     this.props.dispatch({
-      type: 'login/save',
+      type: 'join/save',
       payload: { code: value },
     });
   }
 
 
-  login = () => {
+  join = () => {
     if (this.props.mobile == '' || this.props.mobile.length != 11 || this.props.code == '' || this.props.code.length != 4) {
       this.showToast('请输入有效的手机号或输入有效验证码！');
       return false;
     }
     this.props.dispatch({
-      type: 'login/login',
+      type: 'join/join',
       payload: {
         code: this.props.code,
         mobile: this.props.mobile,
@@ -58,7 +60,7 @@ export default class Login extends Component {
     }
 
     this.props.dispatch({
-      type: 'login/sendSms',
+      type: 'join/sendSms',
       payload: {
         mobile: this.props.mobile,
       },
@@ -77,14 +79,14 @@ export default class Login extends Component {
     setIntervalTime = setInterval(() => {
       numConst--;
       this.props.dispatch({
-        type: 'login/save',
+        type: 'join/save',
         payload: { sending: 1, smsTime: numConst },
       });
 
       if (numConst == 0 || (this.props.erroMessage && this.props.erroMessage != '')) {
         clearInterval(setIntervalTime);
         this.props.dispatch({
-          type: 'login/save',
+          type: 'join/save',
           payload: { sending: 2, erroMessage: '', smsTime: 30 },
         });
       }
@@ -107,7 +109,7 @@ export default class Login extends Component {
     }
 
     this.props.dispatch({
-      type: 'login/sendSmsVoice',
+      type: 'join/sendSmsVoice',
       payload: {
         mobile: this.props.mobile,
       },
@@ -130,11 +132,14 @@ export default class Login extends Component {
       })
     }
     return (
-      <View className='login-page' id='login-page'>
+      <View className='join-page' id='join-page'>
         <View className='title'>您好，请登录</View>
         <View className='title-des'>新用户注册即享18天会员98元</View>
         <View className='bgtopWrap'>
           <View className='loginWrap'>
+            <View className='inpuWrapMpblie'>
+              <Input type='number' name='mobile' maxLength='11' placeholder='请输入真实姓名' value={this.props.mobile} onInput={this.getMobile} />
+            </View>
             <View className='inpuWrapMpblie'>
               <Input type='number' name='mobile' maxLength='11' placeholder='请输入手机号' value={this.props.mobile} onInput={this.getMobile} />
             </View>
@@ -144,11 +149,17 @@ export default class Login extends Component {
               {this.state.sending == 1 && <View className='numberWrap'>{`${smsTime}秒后重发`}</View>}
               {this.state.sending == 0 && <View className='numberWrap' onClick={this.sendSms}>获取验证码</View>}
             </View>
-            <Button className='button' onClick={this.login}>登录</Button>
-            <View className='see-des' onClick={this.getVoiceCode}>
-              收不到短信？
-              <Text>使用语音验证码</Text>
+            <View className='inpuWrapMpblie'>
+              <Input type='number' name='mobile' maxLength='11' placeholder='请输入推荐人手机' value={this.props.mobile} onInput={this.getMobile} />
             </View>
+            <View className='inpuWrapMpblie'>
+              <Picker mode='selector' range={this.state.selector}>
+                <View className='picker'>
+                  当前选择：{this.state.selectorChecked}
+                </View>
+              </Picker>
+            </View>            
+            <Button className='button' onClick={this.join}>登录</Button>
           </View>
         </View>
       </View>

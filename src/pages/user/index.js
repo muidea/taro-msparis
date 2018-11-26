@@ -18,7 +18,7 @@ export default class User extends Component {
   };
 
   goPage = (e) => {
-    if(e.currentTarget.dataset.url == '/pages/login/index' && this.props.access_token) {
+    if(e.currentTarget.dataset.url == '/pages/join/index' && this.props.access_token) {
       return;
     }
     Taro.navigateTo({
@@ -29,7 +29,7 @@ export default class User extends Component {
   goToPage = (e) => {
     if(!this.props.access_token) {
       Taro.navigateTo({
-        url: '/pages/login/index',
+        url: '/pages/join/index',
       })
       return;
     }
@@ -42,7 +42,7 @@ export default class User extends Component {
     e.stopPropagation();
     if(!this.props.access_token) {
       Taro.navigateTo({
-        url: '/pages/login/index',
+        url: '/pages/join/index',
       })
       return;
     }
@@ -69,7 +69,7 @@ export default class User extends Component {
           },
         });
         this.props.dispatch({
-          type: 'login/save',
+          type: 'join/save',
           payload: {
             access_token: '',
             invitation_code: '',
@@ -88,8 +88,8 @@ export default class User extends Component {
     const { mobile, coupon_number, nickname, list } = this.props;
     return (
       <View className='user-page'>
-        <View className='not-login'>
-          <View className='to-login' data-url='/pages/login/index' onClick={this.goPage}>
+        <View className='not-join'>
+          <View className='to-join' data-url='/pages/join/index' onClick={this.goPage}>
             <View className='left'>
               <View className={mobile ? 'name black' : 'name '}>{ nickname || '请登录 >'}</View>
               <View>
@@ -115,13 +115,13 @@ export default class User extends Component {
             ))}
           </View>
         </View>
-        <View className='login'>
+        <View className='join'>
           <View className='card'>
             <View className='type type0'>
               <View className='operation'>
                 <View className='txt'>{mobile ? 'VIP会员用户' : '您还不是会员'}</View>
                 {!mobile && (
-                  <View className='btn' data-url='/pages/login/index' onClick={this.goPage}>
+                  <View className='btn' data-url='/pages/join/index' onClick={this.goPage}>
                     成为会员
                     <View className='iconfont icon-membership_more'></View>
                   </View>
